@@ -10,7 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AuthenticationApiDbContext>(options => options.UseInMemoryDatabase("AuthDb"));
+//builder.Services.AddDbContext<AuthenticationApiDbContext>(options => options.UseInMemoryDatabase("AuthDb"));
+builder.Services.AddDbContext<AuthenticationApiDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AuthenticationApiConnectionString")));
 
 var app = builder.Build();
 

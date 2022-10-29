@@ -57,6 +57,11 @@ namespace AuthenticationAPI.Controllers
         {
             var user = authContext.Users.Where(u => u.Username == signin.Username).FirstOrDefault();
 
+            if (user.Username == null)
+            {
+                return BadRequest("Username not found");
+            }
+
             if (user.Username != signin.Username)
             {
                 return BadRequest("Invalid username");
